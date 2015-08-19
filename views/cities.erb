@@ -1,0 +1,16 @@
+<h1>Your Current Cities</h1>
+
+<% if @cities.any?() %>
+  <h3>Here are your cities:</h3>
+
+  <ul>
+    <% @cities.each() do |cities| %>
+      <li><a href="/cities/<%= city.id()%>"><%= city.name() %></a></li>
+    <% end %>
+  </ul>
+
+<% else %>
+
+  <p>There are no cities yet!</p>
+
+<% end %>

@@ -37,4 +37,16 @@ describe(City) do
       expect(City.all()).to(eq([test_city]))
     end
   end
+
+  # describe('#trains') do
+  #   it("returns an array of train for that city") do
+  #     test_city = City.new({:location => "Paris", :id => nil})
+  #     test_city.save()
+  #     test_train = Train.new({:color => "blue"})
+  #     test_train.save()
+  #     test_train2 = Train.new({:color => "red"})
+  #     test_train2.save()
+  #     expect(test_city.trains()).to(eq([test_train, test_train2]))
+  #   end
+  # end
 end
