@@ -4,6 +4,9 @@ class Train
       @color = attributes.fetch(:color)
       @id = attributes.fetch(:id)
     end
+
+  define_method(:==) do |another_train|
+    self.id().==another_train.id()
   end
 
   define_singleton_method(:all) do
@@ -14,5 +17,16 @@ class Train
       id = train.fetch("id").to_i()
       trains.push(Train.new({:color => color, :id => id}))
     end
-  trains
+    trains
+  end
+
+  define_method(:save) do
+    result = DB.exec("INSERT INTO train(color) VALUES ('#{color}') RETURNING id;")
+    @id = result.first().fetch("id").to_i()
+  end
+
+  define_singleton_method(:clear) do
+    DB.exec("DELETE FROM train *")
+  end
+
 end
