@@ -34,6 +34,18 @@ get('/cities/:id') do
   erb(:city)
 end
 
+get("/cities/:id/edit") do
+  @city = City.find(params.fetch("id").to_i())
+  erb(:city_edit)
+end
+
+patch("/cities/:id") do
+  location = params.fetch("location")
+  @city = City.find(params.fetch("id").to_i())
+  @city.update({:location => location})
+  erb(:city)
+end
+
 get("/trains/new") do
   erb(:train_form)
 end

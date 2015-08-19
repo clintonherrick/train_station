@@ -38,15 +38,35 @@ describe(City) do
     end
   end
 
-  # describe('#trains') do
-  #   it("returns an array of train for that city") do
-  #     test_city = City.new({:location => "Paris", :id => nil})
-  #     test_city.save()
-  #     test_train = Train.new({:color => "blue"})
-  #     test_train.save()
-  #     test_train2 = Train.new({:color => "red"})
-  #     test_train2.save()
-  #     expect(test_city.trains()).to(eq([test_train, test_train2]))
-  #   end
-  # end
+  describe("#update") do
+    it("lets you update cities in the database") do
+      city = City.new({:location => "Paris", :id => nil})
+      city.save()
+      city.update({:location => "Amsterdam"})
+      expect(city.location()).to(eq("Amsterdam"))
+    end
+  end
+
+  describe('.find') do
+      it("returns a city by its id") do
+        test_city = City.new({:location => "Paris", :id => nil})
+        test_city.save()
+        test_city2 = City.new({:location => "Amsterdam", :id => nil})
+        test_city2.save()
+
+        expect(City.find(test_city2.id())).to(eq(test_city2))
+      end
+    end
+
+    describe("#delete") do
+      it("lets you delete a city from the database") do
+        city = City.new({:location => "Paris", :id => nil})
+        city.save()
+        city2 = City.new({:location => "Amsterdam", :id => nil})
+        city2.save()
+        city.delete()
+        expect(City.all()).to(eq([city2]))
+      end
+    end
+
 end

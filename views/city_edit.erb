@@ -1,0 +1,10 @@
+<h1>Update the <%=@city.location() %> city </h1>
+
+<form action="/cities/<%= @city.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+
+  <label for="location">Rename your location:</label>
+  <input id="location" name="location" type="text">
+
+  <button type="submit">Update</button>
+</form>
