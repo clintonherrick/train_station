@@ -4,8 +4,8 @@
   <h3>Here are your trains:</h3>
 
   <ul>
-    <% @trains.each() do |trains| %>
-      <li><a href="/trains/<%= train.id()%>"><%= train.name() %></a></li>
+    <% @trains.each() do |train| %>
+      <li><a href="/trains/<%= train.id()%>"><%= train.color() %></a></li>
     <% end %>
   </ul>
 

@@ -21,12 +21,33 @@ class Train
   end
 
   define_method(:save) do
-    result = DB.exec("INSERT INTO train(color) VALUES ('#{color}') RETURNING id;")
+    result = DB.exec("INSERT INTO train (color) VALUES ('#{color}') RETURNING id;")
     @id = result.first().fetch("id").to_i()
   end
 
   define_singleton_method(:clear) do
     DB.exec("DELETE FROM train *")
   end
+
+  define_method(:update) do |attributes|
+    @color = attributes.fetch(:color)
+    @id = self.id()
+    DB.exec("UPDATE train SET color = '#{@color}' WHERE id = #{@id};")
+  end
+
+  define_singleton_method(:find) do |id|
+    found_train = nil
+    Train.all().each() do |train|
+      if train.id().==(id)
+        found_train = train
+      end
+    end
+    found_train
+  end
+
+  define_method(:delete) do
+    DB.exec("DELETE FROM train WHERE id = #{self.id()};")
+  end
+
 
 end

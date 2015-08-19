@@ -41,7 +41,7 @@ end
 post('/trains') do
   color = params.fetch("color")
   train = Train.new({:color => color, :id => nil})
-  trains.save()
+  train.save()
   erb(:success)
 end
 
@@ -52,6 +52,18 @@ end
 
 get('/trains/:id') do
   @train = Train.find(params.fetch('id').to_i())
+  erb(:train)
+end
+
+get('trains/:id/edit') do
+  @train = Train.find(params.fetch("id").to_i())
+  erb(:train_edit)
+end
+
+patch("/trains:id") do
+  color = params.fetch("color")
+  @train = Train.find(params.fetch("id").to_i())
+  @train.update({:color => color})
   erb(:train)
 end
 

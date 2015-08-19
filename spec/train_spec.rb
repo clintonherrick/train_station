@@ -10,7 +10,6 @@ describe(Train) do
     end
   end
 
-
   describe('.all') do
     it("returns an empty list of trains at first") do
       expect(Train.all()).to(eq([]))
@@ -47,4 +46,35 @@ describe(Train) do
       expect(Train.all()).to(eq([]))
     end
   end
+
+  describe("#update") do
+    it("lets you update trains in the database") do
+      train= Train.new({:color => "blue", :id => nil})
+      train.save()
+      train.update({:color => "green"})
+      expect(train.color()).to(eq("green"))
+    end
+  end
+
+  describe('.find') do
+      it("returns a train by its id") do
+        test_train = Train.new({:color => "blue", :id => nil})
+        test_train.save()
+        test_train2 = Train.new({:color => "green", :id => nil})
+        test_train2.save()
+        expect(Train.find(test_train2.id())).to(eq(test_train2))
+      end
+    end
+
+    describe("#delete") do
+      it("lets you delete a train from the database") do
+        train = Train.new({:color => "blue", :id => nil})
+        train.save()
+        train2 = Train.new({:color => "green", :id => nil})
+        train2.save()
+        train.delete()
+        expect(Train.all()).to(eq([train2]))
+      end
+    end
+
 end

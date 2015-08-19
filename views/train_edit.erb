@@ -1,0 +1,10 @@
+<h1>Update the <%=@train.color() %> train </h1>
+
+<form action="/trains/<%= @train.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+
+  <label for="color">Paint that train a new color:</label>
+  <input id="color" name="color" type="text">
+
+  <button type="submit">Update</button>
+</form>
