@@ -1,9 +1,52 @@
 <h1>Your Current Cities</h1>
 
-<% if @cities.any?() %>
-  <h3>Here are your cities:</h3>
+<p>Add a city to the database</p>
 
-  <ul>
+
+<form action="/cities" method="post">
+  <label for="location"> City Name </label>
+  <input id="location" name="location" type="text">
+
+  <button type="submit">Add City</button>
+</form>
+
+  <% if @cities.any?() %>
+    <p>Click on a city to see information about the trains lines</p>
+
+    <ul>
+    <% @cities.each do |city| %>
+      <li> <a href="/cities/<%= city.id() %>"> <%= city.location() %></a></li>
+    <% end %>
+    </ul>
+
+  <% else %>
+    <p>There are no cities added yet!!!! </p>
+  <% end %>
+
+  <p> <a href="/trains">See all trains</a></p>
+
+  <p> <a href="/">Return to Train Station</a></p>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<% if @cities.any?() %>
+  <h3>Here are your cities:</h3> --
+  <!-- <ul>
     <% @cities.each() do |city| %>
       <li><a href="/cities/<%= city.id()%>"><%= city.location() %></a></li>
     <% end %>
@@ -17,4 +60,4 @@
 
 <div class="container">
   <a href="/"><button class="button btn">Return Home</a>
-</div>
+</div> -->

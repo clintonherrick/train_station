@@ -1,20 +1,27 @@
 <h1>Your Current Trains</h1>
 
+<p>Add a train to the database:</p>
+
+<form action="/trains" method="post">
+  <label for="color">Train Line Color:</label>
+  <input id="color" name="color" type="text">
+
+  <button type="submit">Add train line</button>
+</form>
+
+
 <% if @trains.any?() %>
-  <h3>Here are your trains:</h3>
+  <p>Click on a train to see information about it and add city stops to it:</p>
 
   <ul>
-    <% @trains.each() do |train| %>
-      <li><a href="/trains/<%= train.id()%>"><%= train.color() %></a></li>
+    <% @trains.each do |train| %>
+    <li><a href="/trains/<%= train.id() %>"><%= train.color() %></a></li>
     <% end %>
   </ul>
-
 <% else %>
-
-  <p>There are no trains yet!</p>
-
+  <p>There are no trains added yet!</p>
 <% end %>
 
-<div class="container">
-  <a href="/"><button class="button btn">Return Home</a>
-</div>
+<p><a href="/cities">See all cities</a></p>
+
+<p><a href="/">Return to Main Page</a></p>

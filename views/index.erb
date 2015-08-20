@@ -1,12 +1,35 @@
 <h1>Welcome to the Train Station! CHOOOOOOOOO!!!! CHOOOOOOOOOOO!!!!</h1>
+<h2>A place where you can store information about cities and trains.</h2>
 
-<div class="container">
-  <a href="/trains">View All Trains</a>
-  <a href="/trains/new">Add New Train</a>
-</div>
+<p><a href="/trains">Add a new train</a></p>
+<p><a href="/cities">Add a new city</a></p>
 
 
-<div class="container">
-  <a href="/cities">View All Cities</a>
-  <a href="/cities/new">Add New City</a>
-</div>
+<h3>Here are all the cities in this database:</h3>
+
+<% if @cities.any?() %>
+  <p>Click on a city to see information about it and note the trains that go through:</p>
+
+  <ul>
+    <% @cities.each() do |city| %>
+      <li><a href="/cities/<%= city.id() %>"><%= city.location() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no cities added yet!</p>
+<% end %>
+
+
+<h3>Here are all of the trains in the database:</h3>
+<% if @trains.any?() %>
+  <p>Click on a train to see information about it and what cities it stops in</p>
+
+  <ul>
+    <% @trains.each do |train| %>
+      <li><a href="/trains/<%= train.id() %>"><%= train.color() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no trains added yet!</p>
+
+<% end %>
