@@ -54,6 +54,30 @@ describe(Train) do
       train.update({:color => "green"})
       expect(train.color()).to(eq("green"))
     end
+
+    it('lets you add a stop to a train line') do
+      train = Train.new({:color => "blue", :id => nil})
+      train.save()
+      salem = City.new({:location => "Salem", :id => nil})
+      salem.save()
+      detroit = City.new({:location => "Detroit", :id => nil})
+      detroit.save()
+      train.update({:city_ids => [salem.id(), detroit.id()]})
+      expect(train.cities()).to(eq([salem, detroit]))
+    end
+  end
+
+  describe("#cities") do
+    it("returns all of the stops in a particular train line") do
+      train = Train.new({:color => "blue", :id => nil})
+      train.save()
+      salem = City.new({:location => "Salem", :id => nil})
+      salem.save()
+      detroit = City.new({:location => "Detroit", :id => nil})
+      detroit.save()
+      train.update({:city_ids => [salem.id(), detroit.id()]})
+      expect(train.cities()).to(eq([salem, detroit]))
+    end
   end
 
   describe('.find') do
