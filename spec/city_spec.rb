@@ -45,7 +45,29 @@ describe(City) do
       city.update({:location => "Amsterdam"})
       expect(city.location()).to(eq("Amsterdam"))
     end
+    it('lets you add a train to a city') do
+      train = Train.new ({:color => "blue", :id => nil})
+      train.save()
+      city = City.new({:location => "Detroit", :id => nil})
+      city.save()
+      city.update({:train_ids => [train.id()]})
+      expect(city.trains()).to(eq([train]))
+    end
   end
+
+  describe("#trains") do
+  it("returns all of the trains that each city has") do
+    train = Train.new(:color => "blue", :id => nil)
+    train.save()
+    train2 = Train.new(:color => "blue", :id => nil)
+    train2.save()
+    city = City.new(:location => "Detroit", :id => nil)
+    city.save()
+    city.update(:train_ids => [train.id()])
+    city.update(:train_ids => [train2.id()])
+    expect(city.trains()).to(eq([train, train2]))
+  end
+end
 
   describe('.find') do
       it("returns a city by its id") do
