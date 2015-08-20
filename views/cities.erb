@@ -4,8 +4,8 @@
   <h3>Here are your cities:</h3>
 
   <ul>
-    <% @cities.each() do |cities| %>
-      <li><a href="/cities/<%= city.id()%>"><%= city.name() %></a></li>
+    <% @cities.each() do |city| %>
+      <li><a href="/cities/<%= city.id()%>"><%= city.location() %></a></li>
     <% end %>
   </ul>
 
@@ -14,6 +14,12 @@
   <p>There are no cities yet!</p>
 
 <% end %>
+
+<ul>
+    
+      <li><%= city.location() %> [<a href="/delete_task/<%= task.id() %>"> X </a>]</li>
+    <% end %>
+  </ul>
 
 <div class="container">
   <a href="/"><button class="button btn">Return Home</a>

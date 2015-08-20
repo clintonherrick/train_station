@@ -25,6 +25,19 @@ describe('viewing all of the trains', {:type => :feature}) do
   end
 end
 
+# describe('path to edit train', {:type => :feature}) do
+#   it('allows user to update the color of the train line') do
+#     visit('/')
+#     click_link('Add New Train')
+#     fill_in('color', :with => 'blue')
+#     click_button('Add Train')
+#     click_link('Return Home')
+#     click_link('View All Trains')
+#     click_link('green')
+#     expect(page).to have_content('Edit blue Train')
+#   end
+# end
+
 describe('return to home page', {:type => :feature}) do
   it('allows a user to return to the home page') do
     visit('/trains')
@@ -53,10 +66,10 @@ describe('viewing all of the cities', {:type => :feature}) do
   end
 end
 
-describe('return to home page', {:type => :feature}) do
-  it('allows a user to return to the home page') do
-    visit('/cities')
-    click_link('Return Home')
-    expect(page).to have_content('Welcome to the Train Station!')
-  end
-end
+# describe('return to home page', {:type => :feature}) do
+#   it('allows a user to return to the home page') do
+#     visit('/cities')
+#     click_link('Return Home')
+#     expect(page).to have_content('Welcome to the Train Station!')
+#   end
+# end

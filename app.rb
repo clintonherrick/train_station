@@ -46,6 +46,13 @@ patch("/cities/:id") do
   erb(:city)
 end
 
+delete('/cities/:id') do
+  @city = City.find(params.fetch("id").to_i())
+  @city.delete()
+  @cities = City.all()
+  erb(:index)
+end  
+
 get("/trains/new") do
   erb(:train_form)
 end
@@ -78,6 +85,15 @@ patch("/trains:id") do
   @train.update({:color => color})
   erb(:train)
 end
+
+delete('/trains/:id') do
+  @train = Train.find(params.fetch("id").to_i())
+  @train.delete()
+  @trains = Train.all()
+  erb(:index)
+end
+
+
 
 
 # post("/tasks") do
